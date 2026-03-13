@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nosso Primeiro Semestre ❤️</title>
+    <style>
+        :root {
+            --primary-color: #ff4d6d;
+            --secondary-color: #fff5f5;
+            --accent-color: #c9184a;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--secondary-color);
+            color: #4a4a4a;
+            margin: 0;
+            padding-bottom: 50px;
+            overflow-x: hidden;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #ffe3e3 0%, #fff 100%);
+            border-bottom: 2px solid #ffb3c1;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .heart-icon {
+            color: var(--primary-color);
+            font-size: 60px;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.15);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .timeline-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            position: relative;
+            padding: 0 20px;
+        }
+
+        .timeline-container::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: #ffb3c1;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+            border-radius: 2px;
+        }
+
+        .month-card {
+            padding: 20px 30px;
+            position: relative;
+            background-color: inherit;
+            width: 45%;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .month-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(255, 77, 109, 0.15);
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .month-card::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            background-color: #fff;
+            border: 4px solid var(--primary-color);
+            top: 30px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .left {
+            left: 0;
+            text-align: right;
+        }
+
+        .right {
+            left: 50%;
+            text-align: left;
+        }
+
+        .right::after {
+            left: -10px;
+        }
+
+
+        .card-content {
+            background-color: var(--card-bg);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid #ffe3e3;
+        }
+
+        .month-number {
+            font-size: 1.2rem;
+            color: var(--accent-color);
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .month-title {
+            font-size: 1.8rem;
+            color: #333;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        .photo-container {
+            width: 100%;
+            height: 600px;
+            background-color: #ffe3e3;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            overflow: hidden;
+            border: 2px dashed #ffb3c1;
+            color: var(--primary-color);
+        }
+
+        #ph2 {
+            height: 200px;
+        }
+
+        .photo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+
+        }
+
+        .caption {
+            font-style: italic;
+            line-height: 1.6;
+            color: #666;
+            font-size: 1rem;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 20px;
+            font-size: 0.9rem;
+            color: #a0a0a0;
+            border-top: 1px solid #ffe3e3;
+        }
+
+        @media screen and (max-width: 768px) {
+            .timeline-container::after {
+                left: 31px;
+            }
+
+            .month-card {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+                text-align: left !important;
+            }
+
+            .month-card.right {
+                left: 0%;
+            }
+
+            .month-card::after {
+                left: 21px;
+                right: auto;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;1,400&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+
+
+    <header>
+        <div class="heart-icon">❤️</div>
+        <h1>Nossa História ❤️</h1>
+
+        <div class="counter-container">
+            <div class="time-box">
+                <span id="months">0</span>
+                <label>Meses</label>
+            </div>
+            <div class="time-box">
+                <span id="weeks">0</span>
+                <label>Semanas</label>
+            </div>
+            <div class="time-box">
+                <span id="days">0</span>
+                <label>Dias</label>
+            </div>
+            <div class="time-box">
+                <span id="hours">0</span>
+                <label>Horas</label>
+            </div>
+        </div>
+    </header>
+
+    <div class="timeline-container">
+
+        <div class="month-card left" style="animation-delay: 0.2s;">
+            <div class="card-content">
+                <span class="month-number">Mês 0</span>
+                <h3 class="month-title">O Começo de Tudo</h3>
+                <div class="photo-container">
+                    <img src="mes0.jpg" alt="img0">
+                </div>
+                <p class="caption">
+                    "Lembra desse momento? Dessa virada de chave, um momento muito especial que marca a mudança da
+                    amizade pra um namoro sério, um simbolo do nosso sentimento um pelo outro, da nossa ânsia por viver
+                    juntos"
+                </p>
+            </div>
+        </div>
+
+        <div class="month-card right" style="animation-delay: 0.4s;">
+            <div class="card-content">
+                <span class="month-number">1 mês</span>
+                <h3 class="month-title">Primeiras Descobertas</h3>
+                <div class="photo-container">
+                    <img src="mes1.jpg" alt="img1">
+                </div>
+                <p class="caption">
+                    "As mudanças acontecendo, a paixão sem medidas, saindo juntos, indo congregar, aproveitando todos os
+                    momentos juntinhos"
+                </p>
+            </div>
+        </div>
+
+        <div class="month-card left" style="animation-delay: 0.6s;">
+            <div class="card-content">
+                <span class="month-number">2 meses</span>
+                <h3 class="month-title">A Nossa Rotina</h3>
+                <div id="ph2" class="photo-container">
+                    <img id="img2" src="mes2.png" alt="img2">
+                </div>
+                <p class="caption">
+                    "Uma rotina corrida, a distância nos separando, mas mesmo assim consiguimos passar por cima desse
+                    obstaculo, e criar momentos de conforto com a sensação de: você não ta aqui, mas eu sinto sua
+                    presença"
+                </p>
+            </div>
+        </div>
+
+        <div class="month-card right" style="animation-delay: 0.8s;">
+            <div class="card-content">
+                <span class="month-number">3 meses</span>
+                <h3 class="month-title">Mais Fortes</h3>
+                <div class="photo-container">
+                    <img src="mes3.jpg" alt="img3">
+                </div>
+                <p class="caption">
+                    "Passamos por muitos momentos difíceis, quase nos separamos, mas o sentimento falou mais alto, mesmo
+                    quebrados conseguimos seguir em frente, recuperar nosso relacionamento e ter bons momentos juntos"
+                </p>
+            </div>
+        </div>
+
+        <div class="month-card left" style="animation-delay: 1.0s;">
+            <div class="card-content">
+                <span class="month-number">4 meses</span>
+                <h3 class="month-title">Pertinho</h3>
+                <div class="photo-container">
+                    <img src="mes4.jpg" alt="img4">
+                </div>
+                <p class="caption">
+                    "Finalmente aproveitamos a distância encurtada para ficar bem grudadinhos; comemos, nos divertimos,
+                    conversamos muito, muitos abraços, beijinhos, momentos juntinhos, um gostinho de como é viver
+                    juntinhos"
+                </p>
+            </div>
+        </div>
+
+        <div class="month-card right" style="animation-delay: 1.0s;">
+            <div class="card-content">
+                <span class="month-number">5 meses</span>
+                <h3 class="month-title">Despedida</h3>
+                <div class="photo-container">
+                    <img src="mes5.jpg" alt="img5">
+                </div>
+                <p class="caption">
+                    "A rotina batendo a porta, mas não nos impediu de nos vermos, de aproveitarmos o tempo juntos, sendo
+                    companhia fiel um ao outro e servindo a Deus juntinhos presencialmente, e algumas vezes juntinhos
+                    EAD"
+                </p>
+            </div>
+        </div>
+    </div>
+    <script>
+        function atualizarContador() {
+            const dataInicio = new Date('2025-09-13T18:00:00');
+            const agora = new Date();
+
+            const diffInMs = agora - dataInicio;
+
+            const meses = Math.floor(diffInMs / (1000 * 60 * 60 * 24 * 30.44));
+            const semanas = Math.floor(diffInMs / (1000 * 60 * 60 * 24 * 7));
+            const dias = Math.floor(diffInMs / (1000 * 60 * 60 * 24));
+            const horas = Math.floor(diffInMs / (1000 * 60 * 60));
+
+            document.getElementById('months').innerText = meses;
+            document.getElementById('weeks').innerText = semanas;
+            document.getElementById('days').innerText = dias;
+            document.getElementById('hours').innerText = horas;
+        }
+
+        setInterval(atualizarContador, 1000);
+        atualizarContador();
+    </script>
+
+</body>
+
+</html>
