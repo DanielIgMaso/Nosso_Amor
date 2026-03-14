@@ -336,20 +336,38 @@
     </div>
     <script>
         function atualizarContador() {
-            const dataInicio = new Date('2025-09-13T18:00:00');
+            const dataInicio = new Date('2025-03-14T18:00:00');
             const agora = new Date();
+
+            let anos = agora.getFullYear() - dataInicio.getFullYear();
+            let meses = agora.getMonth() - dataInicio.getMonth();
+            let dias = agora.getDate() - dataInicio.getDate();
+
+            if(dias < 0){
+                meses--;
+                //Pega o último dia do mês anterior para compensar os dias negativos
+                const ultimoDiaMesAnterior = new Date(agora.getFullYear(), agora.getMonth(), 0)
+                dias += ultimoDiaMesAnterior;
+            }
+
+            //Ajuste se o mês atual for menor que o mês de início
+            if (meses < 0){
+                anos--;
+                meses += 12;
+            }
+
+            const totalMeses= (anos * 12) + meses;
 
             const diffInMs = agora - dataInicio;
 
-            const meses = Math.floor(diffInMs / (1000 * 60 * 60 * 24 * 30.44));
             const semanas = Math.floor(diffInMs / (1000 * 60 * 60 * 24 * 7));
-            const dias = Math.floor(diffInMs / (1000 * 60 * 60 * 24));
-            const horas = Math.floor(diffInMs / (1000 * 60 * 60));
+            const totalDias = Math.floor(diffInMs / (1000 * 60 * 60 * 24));
+            const totalHoras = Math.floor(diffInMs / (1000 * 60 * 60));
 
-            document.getElementById('months').innerText = meses;
+            document.getElementById('months').innerText = totalMeses
             document.getElementById('weeks').innerText = semanas;
-            document.getElementById('days').innerText = dias;
-            document.getElementById('hours').innerText = horas;
+            document.getElementById('days').innerText = totalDias;
+            document.getElementById('hours').innerText = totalHoras;
         }
 
         setInterval(atualizarContador, 1000);
